@@ -4,12 +4,12 @@ var io = require('socket.io')(http)
 
 //Rota principal
 app.get('/', function(req, res){
-	res.sendFile(__dirname + '/index.html')
+	res.sendFile(__dirname + '/chat.html')
 })
 
 //Conexão com o socket
 io.on('connection', function(socket){
-	console.log("Um usuário se conectou")
+	//console.log("Um usuário se conectou")
 
 	socket.broadcast.emit('Olá!')
 
@@ -23,6 +23,11 @@ io.on('connection', function(socket){
 		console.log("Disseram: " + txt)
 		io.emit('message', txt)
 	})
+
+	socket.on('setNickname', function(nickname){
+		console.log(nickname + " entrou na sala")
+		io.emit("usuarioConectado", nickname);
+	});
 });
 
 

@@ -87,7 +87,7 @@
 	  		<h2>Bem Vindo(a)!</h2>
 	  		<label>Nickname</label>
 	  		<input type="text" id="nickname">
-	  		<button id="">Entrar</button>
+	  		<button id="enter_chat">Entrar</button>
 	  	</div>
   	</div>
 
@@ -102,24 +102,50 @@
     <script src="/socket.io/socket.io.js"></script>
 	<script>
 	  window.addEventListener("load", function(event){
-	  
-	  	var socket = io()
+
+	  	var dadosUser = {
+	  		nickname: ""
+	  	}
+
+	  	var btn_enter = document.getElementById("enter_chat");
 
 	  	var form_mensagem = document.getElementById("form_message")
 	  	var txt_message = document.getElementById("text_message")
+	  	var txt_nickname = document.getElementById("nickname")
 
-	  	form_mensagem.addEventListener("submit", function(event){
-	  		event.preventDefault()
-	  		socket.emit('message', txt_message.value)
-	  		txt_message.value = ""
-	  		return false
-	  	})
+	  	var block_screen = document.getElementById("block_screen");
+	  	var modal_nickname = document.getElementById("modal-nickname");
+	  	
 
 	  	var list_messages = document.getElementById("messages");
 
-	  	socket.on('message', function(msg){
-	  		list_messages.innerHTML += "<li>" + msg + "</li>";
-	  	})
+	  	
+	  	btn_enter.addEventListener("click", function(event){
+	  		var socket = io()
+	  		
+	  		socket.emit('setNickname', txt_nickname.value)
+		  	
+		  	socket.on('message', function(msg){
+		  		list_messages.innerHTML += "<li>" + msg + "</li>";
+		  	})
+
+		  	socket.on('usuarioConectado', function(nickname){
+		  		block_screen.style.display = "none";
+		  		modal_nickname.style.display = "none";
+		  		list_messages.innerHTML += "<li><strong>" + nickname + "</strong> entrou na sala</li>";
+		  	});
+		  	
+		  	form_mensagem.addEventListener("submit", function(event){
+		  		event.preventDefault()
+		  		socket.emit('message', txt_message.value)
+		  		txt_message.value = ""
+		  		return false
+		  	})
+	  	});
+	  
+
+
+
 
 	  });
 	</script>
