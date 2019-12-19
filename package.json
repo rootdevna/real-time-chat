@@ -1,0 +1,9 @@
+{
+  "name": "real-time-chat",
+  "version": "0.0.1",
+  "description": "A real time chat with Socket.io and React.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
