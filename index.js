@@ -2,6 +2,10 @@ var app = require('express')()
 var http = require('http').createServer(app)
 var io = require('socket.io')(http)
 
+var users = [];
+
+app.use(require('express').static(__dirname + '/public'));
+
 //Rota principal
 app.get('/', function(req, res){
 	res.sendFile(__dirname + '/chat.html')
@@ -15,17 +19,19 @@ io.on('connection', function(socket){
 
 	//Evento chamado quando o usuário fecha a página
 	socket.on('disconnect', function(){
-		console.log("Um usuário se desconectou")
+		//console.log("Um usuário se desconectou")
 	})
 
 	//Recebendo mensagem
-	socket.on('message', function(txt){
+	socket.on('message', function(txt, nickname){
 		console.log("Disseram: " + txt)
 		io.emit('message', txt)
 	})
 
+	//Pegando o nickname do usuário conectado
+	//enviando mensagem que o usuário se conectou
 	socket.on('setNickname', function(nickname){
-		console.log(nickname + " entrou na sala")
+		users[nickname] = {active: true};
 		io.emit("usuarioConectado", nickname);
 	});
 });

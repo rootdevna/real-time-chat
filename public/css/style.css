@@ -1,0 +1,72 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font: 13px Helvetica, Arial; }
+form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+#messages { list-style-type: none; margin: 0; padding: 0; }
+#messages li { padding: 10px 10px; border-bottom: solid 1px #ccc; font-size: 18px;}
+
+
+#modal-nickname{
+	width: 30%;
+	height: auto;
+	box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+	padding: 3%;
+	margin: 15% auto;
+	border-radius: 3px;
+	z-index: 999999999;
+	background-color: #fff;
+}
+
+#modal-nickname h2{
+	text-align: center;
+}
+
+#modal-nickname input{
+	width: 100%;
+	display: block;
+	padding: 10px;
+}
+
+#modal-nickname button{
+	width: 100%;
+	display: block;
+	padding: 10px;
+	margin-top: 10px;
+}
+
+form#form_message{
+	width: 100%;
+	float: left;
+	padding: 10px;
+	position: fixed;
+	bottom: 0;
+	background-color: #eee;
+	border-top: solid 1px #ccc;
+}
+
+form#form_message input{
+	border: 0;
+	padding: 10px;
+	width: 90%;
+	margin-right: .5%;
+	box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3);
+	border-radius: 3px;
+}
+
+div#block_screen{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 999;
+	top: 0;
+	left: 0;
+}
+
+div#list{
+      width: 300px;
+      background-color: #ddd;
+      height: 100%;
+      position: absolute;
+      right: 0;
+}
