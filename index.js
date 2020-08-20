@@ -37,6 +37,6 @@ io.on('connection', function(socket){
 });
 
 
-http.listen(3000, function(){
-	console.log("Projeto rodando em http://localhost:3000")
+http.listen(process.env.PORT || 5000, function(){
+	console.log("Projeto rodando em http://localhost:5000")
 })
