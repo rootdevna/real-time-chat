@@ -25,7 +25,7 @@ io.on('connection', function(socket){
 	//Recebendo mensagem
 	socket.on('message', function(txt, nickname){
 		console.log("Disseram: " + txt)
-		io.emit('message', txt)
+		io.emit('message', {txt, nickname})
 	})
 
 	//Pegando o nickname do usuário conectado

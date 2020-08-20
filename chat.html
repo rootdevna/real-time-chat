@@ -73,8 +73,8 @@
 
 	  		socket.emit('setNickname', dadosUser.nickname)
 		  	
-		  	socket.on('message', function(msg, nickname){
-		  		list_messages.innerHTML += "<li><strong>"+nickname+": </strong>" + msg + "</li>";
+		  	socket.on('message', function(data){
+		  		list_messages.innerHTML += "<li><strong>"+data.nickname+": </strong>" + data.txt + "</li>";
 		  	})
 
 		  	socket.on('usuarioConectado', function(nickname){
